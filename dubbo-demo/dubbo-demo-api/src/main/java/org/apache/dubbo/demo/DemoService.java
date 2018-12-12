@@ -20,4 +20,36 @@ public interface DemoService {
 
     String sayHello(String name);
 
+    default String routeMethod1(){
+        return null;
+    }
+
+    default String routeMethod2(){
+        return null;
+    }
+
+    default String sayHello(Integer id){
+        return "String from default method";
+    }
+
+    default String sayHello(ClassEnum classEnum){
+        return "enum from default method";
+    }
+
+    default String sayHello(Student student) {
+        return "student from default method";
+    }
+
+    default String sayHello(Student student, School school){
+        return "student and school from default method";
+    }
+
+    default String sayHello(Long id) {
+        return "long from default method";
+    }
+
+    default String sayHello(Integer id1, Long id2) {
+        return id1 + " and " + id2 + "from default";
+    }
+
 }

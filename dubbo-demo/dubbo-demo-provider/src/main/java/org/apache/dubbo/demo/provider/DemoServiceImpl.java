@@ -16,7 +16,10 @@
  */
 package org.apache.dubbo.demo.provider;
 
+import org.apache.dubbo.demo.ClassEnum;
 import org.apache.dubbo.demo.DemoService;
+import org.apache.dubbo.demo.School;
+import org.apache.dubbo.demo.Student;
 import org.apache.dubbo.rpc.RpcContext;
 
 import java.text.SimpleDateFormat;
@@ -30,4 +33,45 @@ public class DemoServiceImpl implements DemoService {
         return "Hello " + name + ", response from provider: " + RpcContext.getContext().getLocalAddress();
     }
 
+    @Override
+    public String routeMethod1() {
+        System.out.println("routeMethod1 was called: " + RpcContext.getContext().getLocalAddress());
+        return "routeMethod1";
+    }
+
+    @Override
+    public String routeMethod2() {
+        System.out.println("routeMethod2 was called: " + RpcContext.getContext().getLocalAddress());
+        return "routeMethod2";
+    }
+
+    @Override
+    public String sayHello(Integer id) {
+        return "integer from sayHello:" + id;
+    }
+
+    @Override
+    public String sayHello(ClassEnum classEnum) {
+        return "enum from sayHello:" + classEnum.getDesc();
+    }
+
+    @Override
+    public String sayHello(Student student) {
+        return "student from sayHello";
+    }
+
+    @Override
+    public String sayHello(Student student, School school) {
+        return student.getName() + "," + school.getName() + " from sayHello";
+    }
+
+    @Override
+    public String sayHello(Long id) {
+        return "long from sayHello";
+    }
+
+    @Override
+    public String sayHello(Integer id1, Long id2) {
+        return id1 + " and " + id2 + " from sayHello";
+    }
 }
