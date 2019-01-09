@@ -16,8 +16,21 @@
  */
 package org.apache.dubbo.demo;
 
+import java.util.List;
+
 public interface DemoService {
 
     String sayHello(String name);
+
+    default String sayHello(String name, Integer age){
+        return null;
+    }
+    default String sayHello(String name, Integer age, List<String> list){
+        return null;
+    }
+
+    default String hello(String name, String msg){
+        return null;
+    }
 
 }

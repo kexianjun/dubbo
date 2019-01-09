@@ -25,6 +25,8 @@ import org.apache.dubbo.rpc.RpcContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.List;
+
 @Service
 public class DemoServiceImpl implements DemoService {
     private static final Logger logger = LoggerFactory.getLogger(DemoServiceImpl.class);
@@ -35,4 +37,18 @@ public class DemoServiceImpl implements DemoService {
         return "Hello " + name + ", response from provider: " + RpcContext.getContext().getLocalAddress();
     }
 
+    @Override
+    public String sayHello(String name, Integer age) {
+        return null;
+    }
+
+    @Override
+    public String hello(String name, String msg) {
+        return null;
+    }
+
+    @Override
+    public String sayHello(String name, Integer age, List<String> list) {
+        return null;
+    }
 }
