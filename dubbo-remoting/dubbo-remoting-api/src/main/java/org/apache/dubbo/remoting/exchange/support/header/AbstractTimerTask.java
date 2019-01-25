@@ -70,7 +70,7 @@ public abstract class AbstractTimerTask implements TimerTask {
         }
 
         Timer timer = timeout.timer();
-        if (timer.isStop() || timeout.isCancelled()) {
+        if (timer.isStop()) {
             return;
         }
 
