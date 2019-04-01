@@ -17,8 +17,15 @@
 package org.apache.dubbo.demo.consumer;
 
 import org.apache.dubbo.demo.DemoService;
+import org.apache.dubbo.demo.PersonTest;
 
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Application {
     /**
@@ -31,5 +38,38 @@ public class Application {
         DemoService demoService = context.getBean("demoService", DemoService.class);
         String hello = demoService.sayHello("world");
         System.out.println("result: " + hello);
+        PersonTest<String> personTest = new PersonTest<>();
+        personTest.setName("person name");
+        personTest.setAge("person age");
+        /*Map<String, List<PersonTest<String>>> resultMap = demoService.sayHi("name");
+        resultMap.forEach((k, v) -> {
+            System.out.println(k);
+            v.forEach(person -> {
+                System.out.println(person.getAge());
+                System.out.println(person.getName());
+
+            });
+        });*/
+        System.out.println("new result:" + demoService.fastjsonTest1(personTest));
+        System.out.println("new result:" + demoService.fastjsonTest1(Stream.of(1,2,3)
+                .map(i -> {
+                    PersonTest<String> person = new PersonTest<>();
+                    person.setAge(i + "age");
+                    person.setName(i + "name");
+                    return person;
+                }).collect(Collectors.toList())));
+
+        /*Map<String, List<PersonTest<String>>> map = new HashMap<>();
+        Stream.of(1, 2, 3).forEach(i -> {
+            List<PersonTest<String>> personTestList = Stream.of("a", "b", "c").map(c -> {
+                PersonTest<String> person = new PersonTest<>();
+                person.setName("name:" + c);
+                person.setAge("haha");
+                return person;
+            }).collect(Collectors.toList());
+            map.put(i + ":" + "name", personTestList);
+        });
+        System.out.println("new result:" + demoService.fastjsonTest1(map));*/
+
     }
 }

@@ -16,8 +16,19 @@
  */
 package org.apache.dubbo.demo;
 
+import java.util.List;
+import java.util.Map;
+
 public interface DemoService {
 
     String sayHello(String name);
+
+    Map<String, List<PersonTest<String>>> sayHi(String name);
+
+    String fastjsonTest1(PersonTest<String> personTest);
+
+    String fastjsonTest1(List<PersonTest<String>> list);
+
+    String fastjsonTest1(Map<String, List<PersonTest<String>>> listMap);
 
 }

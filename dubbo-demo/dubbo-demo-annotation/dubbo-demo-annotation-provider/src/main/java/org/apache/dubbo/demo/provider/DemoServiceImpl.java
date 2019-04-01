@@ -20,10 +20,14 @@ package org.apache.dubbo.demo.provider;
 
 import org.apache.dubbo.config.annotation.Service;
 import org.apache.dubbo.demo.DemoService;
+import org.apache.dubbo.demo.PersonTest;
 import org.apache.dubbo.rpc.RpcContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class DemoServiceImpl implements DemoService {
@@ -33,6 +37,26 @@ public class DemoServiceImpl implements DemoService {
     public String sayHello(String name) {
         logger.info("Hello " + name + ", request from consumer: " + RpcContext.getContext().getRemoteAddress());
         return "Hello " + name + ", response from provider: " + RpcContext.getContext().getLocalAddress();
+    }
+
+    @Override
+    public Map<String, List<PersonTest<String>>> sayHi(String name) {
+        return null;
+    }
+
+    @Override
+    public String fastjsonTest1(PersonTest<String> personTest) {
+        return null;
+    }
+
+    @Override
+    public String fastjsonTest1(List<PersonTest<String>> list) {
+        return null;
+    }
+
+    @Override
+    public String fastjsonTest1(Map<String, List<PersonTest<String>>> listMap) {
+        return null;
     }
 
 }
